@@ -61,6 +61,11 @@ Dim Setup, SetupArchitecture, SetupLocation, SetupOptions, SetupVersion
 '
 '
 
+' SetupVersion
+'    Setup version with the pattern <major>.<minor>.<release>[-<package>]
+'
+SetupVersion = "2.3.16"
+
 ' SetupLocation
 '    Depending on your needs or your environment, you can use either a HTTP or
 '    CIFS/SMB.
@@ -77,12 +82,7 @@ Dim Setup, SetupArchitecture, SetupLocation, SetupOptions, SetupVersion
 '       You also must be sure that you have removed the "Open File Security Warning"
 '       from programs accessed from that UNC.
 '
-SetupLocation = "http://freefr.dl.sourceforge.net/project/fiawi/2.3.x/2.3.0"
-
-' SetupVersion
-'    Setup version with the pattern <major>.<minor>.<release>[-<package>]
-'
-SetupVersion = "2.3.0-1"
+SetupLocation = "http://sourceforge.net/projects/fiawi/files/2.3.x/" & SetupVersion & "/"
 
 ' SetupArchitecture
 '    The setup architecture can be 'x86', 'x64' or 'Auto'
@@ -98,7 +98,7 @@ SetupArchitecture = "Auto"
 '    You should use simple quotes (') to set between quotation marks those values
 '    that require it; double quotes (") doesn't work with UNCs.
 '
-SetupOptions = "/acceptlicense /runnow /server='http://glpi.yourcompany.com/glpi/plugins/fusioninventory/' /S"
+SetupOptions = "/acceptlicense /runnow /server='https://support.anadiag.fr/glpi/plugins/fusioninventory/' /S /no-ssl-check /add-firewall-exception /execmode=service /installtype=from-scratch /httpd-trust='127.0.0.1,195.5.196.173,192.168.16.53'"
 
 ' Setup
 '    The installer file name. You should not have to modify this variable ever.
@@ -108,14 +108,14 @@ Setup = "fusioninventory-agent_windows-" & SetupArchitecture & "_" & SetupVersio
 ' Force
 '    Force the installation even whether Setup is previously installed.
 '
-Force = "No"
+Force = "Yes"
 
 ' Verbose
 '    Enable or disable the information messages.
 '
 '    It's advisable to use Verbose = "Yes" with 'cscript //nologo ...'.
 '
-Verbose = "No"
+Verbose = "Yes"
 
 '
 '
@@ -286,7 +286,7 @@ Function SaveWebBinary(strSetupLocation, strSetup)
    Const adSaveCreateOverWrite = 2
    Const ForWriting = 2
    Dim web, varByteArray, strData, strBuffer, lngCounter, ado, strUrl
-   strUrl = strSetupLocation & "/" & strSetup
+   strUrl = strSetupLocation & "/" & strSetup & "/download"
    'On Error Resume Next
    'Download the file with any available object
    Err.Clear
