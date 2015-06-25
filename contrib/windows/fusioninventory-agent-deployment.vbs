@@ -78,6 +78,7 @@ Dim Setup, SetupArchitecture, SetupLocation, SetupOptions, SetupVersion
 '       from programs accessed from that UNC.
 '
 SetupLocation = "http://freefr.dl.sourceforge.net/project/fiawi/2.3.x/2.3.0"
+'SetupLocation = "http://sourceforge.net/projects/fiawi/files/2.3.x/2.3.16/"
 
 ' SetupVersion
 '    Setup version with the pattern <major>.<minor>.<release>[-<package>]
@@ -286,7 +287,7 @@ Function SaveWebBinary(strSetupLocation, strSetup)
    Const adSaveCreateOverWrite = 2
    Const ForWriting = 2
    Dim web, varByteArray, strData, strBuffer, lngCounter, ado, strUrl
-   strUrl = strSetupLocation & "/" & strSetup
+   strUrl = strSetupLocation & "/" & strSetup & "/download"
    'On Error Resume Next
    'Download the file with any available object
    Err.Clear
